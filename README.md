@@ -5,9 +5,15 @@ A Neovim Linter for the École 42 Norme.
 Requirements
 ---
 
-- NeoVim `v0.5+`(nightly release)
-- [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
-- Executable `norminette` in your PATH
+- NeoVim `v0.5+` (nightly release).
+- [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint).
+- Executable `norminette` in your PATH ([version 3](https://github.com/42School/norminette) specifically).
+
+Roadmap
+---
+
+- [ ] Try to run `norme.nvim` with contents of the current buffer.
+- [ ] Make linter run only if the 42 header is present in the file.
 
 Installation
 ---
