@@ -22,12 +22,20 @@ local norme = require('norme').linter
 
 lint.linters.norme = norme
 
-print(norme)
-
 require('lint').linters_by_ft = {
 	c = { 'norme', },
 	cpp = { 'norme', }, -- for header and C++ files
 }
+```
+
+Usage
+---
+
+Add the following `autocmd`'s:
+
+```vim
+autocmd BufEnter *.c lua require('lint').try_lint()
+autocmd BufWritePost *.c lua require('lint').try_lint()
 ```
 
 Author
