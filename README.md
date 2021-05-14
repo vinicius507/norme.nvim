@@ -2,14 +2,23 @@
 
 A Neovim Linter for the École 42 Norme.
 
-> PS: The plugin is in development. Still not usable.
-
 Requirements
 ---
 
 - NeoVim `v0.5+`(nightly release)
 - [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
 - Executable `norminette` in your PATH
+
+Installation
+---
+
+Use the package manager of your choice.
+
+E.g. with `Packer.nvim`:
+
+```lua
+use { 'vinicius507/norme.nvim', requires = { 'mfussenegger/nvim-lint' } }
+```
 
 Configuration
 ---
