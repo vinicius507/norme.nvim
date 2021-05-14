@@ -43,6 +43,17 @@ require('lint').linters_by_ft = {
 }
 ```
 
+To add it to your `init.vim`, create a lua file and add the code above. Then source it to your `init.vim` using:
+
+```vim
+luafile ~/path/to/luafile.lua
+```
+
+If you use `init.lua`, just place your plugin configuration file in the folder in `$HOME/.config/nvim/lua` and source it in your `init.lua` using:
+```lua
+require('filename') -- without the .lua extension
+```
+
 Usage
 ---
 
