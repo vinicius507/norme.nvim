@@ -1,7 +1,9 @@
 #!/bin/sh
 
+# HACK: Fallback while we don't figure out why we're not receiving args
 FILENAME="$1"
-TEMP_FILE="/tmp/$FILENAME"
+FALLBACK="_temp.c"
+TEMP_FILE="/tmp/${FILENAME:-$FALLBACK}"
 
 cat > "$TEMP_FILE"
 norminette "$TEMP_FILE"
