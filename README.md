@@ -12,7 +12,7 @@ Requirements
 Roadmap
 ---
 
-- [ ] Try to run `norme.nvim` with contents of the current buffer.
+- [X] Try to run `norme.nvim` with contents of the current buffer(HACK, for now).
 - [ ] Add the option to parse a `.normeignore` file.
 
 Installation

@@ -27,10 +27,20 @@ local parser = function(output)
 	return diagnostics
 end
 
+-- HACK: Need a better idea to get contents of current buffer
+local function script_path()
+   local str = debug.getinfo(2, "S").source:sub(2)
+   return str:match("(.*/)") or "."
+end
+
+local get_filetype = function ()
+	return vim.fn.expand('%:t')
+end
+
 M.linter =  {
-	cmd = 'norminette',
-	stdin = false,
-	args = {},
+	cmd = script_path() .. '../stdin-parser',
+	stdin = true,
+	args = { get_filetype() },
 	stream = 'stdout',
 	ignore_exitcode = true,
 	parser = parser,

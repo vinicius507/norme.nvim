@@ -1,0 +1,8 @@
+#!/bin/sh
+
+FILETYPE="$1"
+TEMP_FILE="/tmp/$1"
+
+cat > "$TEMP_FILE"
+norminette "$TEMP_FILE"
+rm "$TEMP_FILE"
