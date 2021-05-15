@@ -6,6 +6,7 @@ local diagnostic_skeleton = { source = 'norminette', severity = ERROR }
 local stdin_parser = '../utils/stdin-parser'
 
 local parser = function(output)
+	print(output)
 	local result = vim.fn.split(output, "\n")
 	local diagnostics = {}
 
