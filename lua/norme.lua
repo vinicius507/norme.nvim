@@ -36,17 +36,19 @@ local function script_path()
 	return str:match("(.*/)") or "."
 end
 
-local get_filename = function ()
-	return vim.fn.expand('%:t')
-end
-
 M.linter =  {
 	cmd = script_path() .. stdin_parser,
 	stdin = true,
-	args = { get_filename() },
+	args = {},
 	stream = 'stdout',
 	ignore_exitcode = true,
 	parser = parser,
 }
+
+M.lint = function()
+	local lint = require('lint')
+	lint.linters.norme.args = { vim.fn.expand('%:t') }
+	lint.try_lint()
+end
 
 return M
