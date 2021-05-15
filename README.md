@@ -13,7 +13,7 @@ Roadmap
 ---
 
 - [ ] Try to run `norme.nvim` with contents of the current buffer.
-- [ ] Make linter run only if the 42 header is present in the file.
+- [ ] Add the option to parse a `.normeignore` file.
 
 Installation
 ---
