@@ -15,6 +15,8 @@ local parser = function(output)
 		lineno = tonumber(lineno or 1) - 1
 		offset = tonumber(offset or 1) - 1
 		local d = vim.deepcopy(diagnostic_skeleton)
+		-- HACK: Need a better idea to ignore norminette errors.
+		if msg == nil then  goto continue end
 		table.insert(diagnostics, vim.tbl_deep_extend('force', d, {
 			code = code,
 			range = {
@@ -28,7 +30,7 @@ local parser = function(output)
 	return diagnostics
 end
 
--- HACK: Need a better idea to get contents of current buffer
+-- HACK: Need a better idea to get contents of current buffer.
 local function script_path()
 	local str = debug.getinfo(2, "S").source:sub(2)
 	return str:match("(.*/)") or "."
