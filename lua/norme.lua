@@ -3,6 +3,7 @@ local M = {}
 local ERROR = vim.lsp.protocol.DiagnosticSeverity.Error
 local pattern = 'Error:%s+([%a+_?]+)%s+%(line:%s+(%d+),%s+col:%s+(%d+)%):%s+(.*)$'
 local diagnostic_skeleton = { source = 'norminette', severity = ERROR }
+local stdin_parser = '../utils/stdin-parser'
 
 local parser = function(output)
 	local result = vim.fn.split(output, "\n")
@@ -38,7 +39,7 @@ local get_filetype = function ()
 end
 
 M.linter =  {
-	cmd = script_path() .. '../stdin-parser',
+	cmd = script_path() .. stdin_parser,
 	stdin = true,
 	args = { get_filetype() },
 	stream = 'stdout',
