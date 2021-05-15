@@ -1,7 +1,7 @@
 #!/bin/sh
 
-FILETYPE="$1"
-TEMP_FILE="/tmp/$1"
+FILENAME="$1"
+TEMP_FILE="/tmp/$FILENAME"
 
 cat > "$TEMP_FILE"
 norminette "$TEMP_FILE"

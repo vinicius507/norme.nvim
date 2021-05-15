@@ -21,7 +21,7 @@ local parser = function(output)
 				['start'] = {line = lineno, character = offset},
 				['end'] = {line = lineno, character = offset + 1}
 			},
-			message = code .. ' ' .. msg,
+			message = 'NORME: ' .. msg .. '(' .. code .. ')',
 		}))
 		::continue::
 	end
@@ -30,18 +30,18 @@ end
 
 -- HACK: Need a better idea to get contents of current buffer
 local function script_path()
-   local str = debug.getinfo(2, "S").source:sub(2)
-   return str:match("(.*/)") or "."
+	local str = debug.getinfo(2, "S").source:sub(2)
+	return str:match("(.*/)") or "."
 end
 
-local get_filetype = function ()
+local get_filename = function ()
 	return vim.fn.expand('%:t')
 end
 
 M.linter =  {
 	cmd = script_path() .. stdin_parser,
 	stdin = true,
-	args = { get_filetype() },
+	args = { get_filename() },
 	stream = 'stdout',
 	ignore_exitcode = true,
 	parser = parser,
