@@ -60,8 +60,10 @@ Usage
 Add the following `autocmd`'s:
 
 ```vim
-autocmd BufEnter *.c lua require('lint').try_lint()
-autocmd BufWritePost *.c lua require('lint').try_lint()
+autocmd BufEnter *.c,*.h lua require('lint').try_lint()
+autocmd BufWritePost *.c,*.h lua require('lint').try_lint()
+autocmd InsertLeave *.c,*.h lua require('lint').try_lint()
+autocmd TextChanged *.c,*.h lua require('lint').try_lint()
 ```
 
 Author
