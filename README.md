@@ -20,10 +20,17 @@ Installation
 
 Use the package manager of your choice.
 
-E.g. with `Packer.nvim`:
+`Packer.nvim`:
 
 ```lua
 use { 'vinicius507/norme.nvim', requires = { 'mfussenegger/nvim-lint' } }
+```
+
+`vim-plug`
+
+```vim
+Plug 'mfussenegger/nvim-lint'
+Plug 'vinicius507/norme.nvim'
 ```
 
 Configuration
