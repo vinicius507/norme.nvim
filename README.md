@@ -9,12 +9,6 @@ Requirements
 - [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint).
 - Executable `norminette` in your PATH ([version 3](https://github.com/42School/norminette) specifically).
 
-Roadmap
----
-
-- [X] Try to run `norme.nvim` with contents of the current buffer(HACK, for now).
-- [ ] Add the option to parse a `.normeignore` file.
-
 Installation
 ---
 
@@ -72,6 +66,8 @@ autocmd BufWritePost *.c,*.h lua require('norme').lint()
 autocmd InsertLeave *.c,*.h lua require('norme').lint()
 autocmd TextChanged *.c,*.h lua require('norme').lint()
 ```
+
+> Norme.nvim will **only** run if the 42 École header is in the file.
 
 Author
 ---
