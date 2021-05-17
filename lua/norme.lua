@@ -1,5 +1,6 @@
 local M = {
 	parser = require('norme/parser').parser,
+	should_lint = require('norme/utils').should_lint,
 }
 
 local stdin_parser = '../utils/stdin-parser'
@@ -20,10 +21,12 @@ M.linter =  {
 }
 
 M.lint = function()
-	local filename = vim.fn.expand('%:t')
-	local lint = require('lint')
-	lint.linters.norme.args = { filename }
-	lint.try_lint()
+	if M.should_lint() then
+		local filename = vim.fn.expand('%:t')
+		local lint = require('lint')
+		lint.linters.norme.args = { filename }
+		lint.try_lint()
+	end
 end
 
 return M
