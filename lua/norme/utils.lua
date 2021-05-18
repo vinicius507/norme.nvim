@@ -8,7 +8,7 @@ end
 
 M.should_lint = function ()
 	local count = 1
-	local pattern = "/%*%s+By:%s(%w+)%s<(.+)>%s+%+#%+%s+%+:%+%s+%+#%+%s+%*/"
+	local pattern = "/%*%s+By:%s+(.+)%s+<(.+)>%s+%+#%+%s+%+:%+%s+%+#%+%s+%*/"
 	local file_path = vim.fn.expand('%:p')
 	if file_exists(file_path) then
 		for line in io.lines(file_path) do
