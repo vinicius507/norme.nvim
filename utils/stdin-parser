@@ -2,7 +2,7 @@
 
 PREFIX="$(tr -dc a-z </dev/urandom | head -c 32)"
 
-FILENAME="$PREFIX_$1"
+FILENAME="$PREFIX$1"
 TEMP_FILE="/tmp/$FILENAME"
 
 case "$FILENAME" in
