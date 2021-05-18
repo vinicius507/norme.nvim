@@ -2,12 +2,18 @@
 
 PREFIX="$(tr -dc a-z </dev/urandom | head -c 32)"
 
-FILENAME="$PREFIX$1"
+FILENAME="$PREFIX_$1"
 TEMP_FILE="/tmp/$FILENAME"
 
-GUARD_NAME="$(echo "$1" | tr "[:lower:]." "[:upper:]_")"
-PREFIXED_GUARD_NAME="$(echo "$FILENAME" | tr "[:lower:]." "[:upper:]_")"
+case "$FILENAME" in
+	*.h*)
+		GUARD_NAME="$(echo \"$1\" | tr "[:lower:]." "[:upper:]_")"
+		PREFIXED_GUARD_NAME="$(echo "$FILENAME" | tr "[:lower:]." "[:upper:]_")"
+		cat | sed "s/$GUARD_NAME/$PREFIXED_GUARD_NAME/g" > "$TEMP_FILE"
+		;;
+	*)
+		cat > "$TEMP_FILE"
+esac
 
-cat | sed "s/$GUARD_NAME/$PREFIXED_GUARD_NAME/g" > "$TEMP_FILE"
 norminette "$TEMP_FILE"
 rm "$TEMP_FILE"
