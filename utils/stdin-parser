@@ -17,4 +17,9 @@ case "$FILENAME" in
 esac
 
 norminette "$TEMP_FILE"
+sleep 0.1
 rm "$TEMP_FILE"
+
+if [ -n "$(pgrep norminette)" ]; then
+	pkill norminette
+fi
