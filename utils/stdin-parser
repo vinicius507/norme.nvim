@@ -3,7 +3,14 @@
 PREFIX="$(tr -dc a-z </dev/urandom | head -c 32)"
 
 FILENAME="$PREFIX$1"
-TEMP_FILE="/tmp/$FILENAME"
+
+# If on linux, stores file under /dev/shm to 
+# avoid using the Hard Drive/SSD
+if "$(uname)" -eq "Linux"; then
+	TEMP_FILE="/dev/shm/$FILENAME"
+else
+	TEMP_FILE="/tmp/$FILENAME"
+fi
 
 case "$FILENAME" in
 	*.h*)
