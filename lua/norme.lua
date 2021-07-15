@@ -3,7 +3,7 @@ local utils = require('norme.utils')
 
 local M = {}
 
-M.on_attach = function ()
+M.on_attach = function (_, _)
 	if not ok then
 		print('[Norme.nvim] new version of norme.nvim uses null-ls instead of nvim-lint.')
 		return
@@ -15,9 +15,6 @@ M.on_attach = function ()
 	end
 	local cfile = require('norme.cfile')
 
-	if not utils.should_lint() then
-		return
-	end
 	null_ls.setup()
 	null_ls.register({ name = 'norminette', filetypes = { 'c', 'cpp' }, sources = { cfile } })
 end

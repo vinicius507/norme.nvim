@@ -13,7 +13,12 @@ M.generator	= require('null-ls.helpers').generator_factory({
 	to_stdin		= false,
 	to_stderr		= true,
 	ignore_errors	= false,
-	on_output		= function (line, _)
+	on_output		= function (line, params)
+
+		if not params.content[6]:match('/%*%s+By:%s+.+%s+<.+>%s+%+#%+%s+%+:%+%s+%+#%+%s+%*/') then
+			return nil
+		end
+
 		local pattern = 'Error:%s+([%a+_?]+)%s+%(line:%s+(%d+),%s+col:%s+(%d+)%):%s+(.*)$'
 		local  code, lineno, offset, msg = string.match(line, pattern)
 
