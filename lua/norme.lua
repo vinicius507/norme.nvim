@@ -18,9 +18,14 @@ M.on_attach = function (_, _)
 
 	null_ls.setup()
 	null_ls.register({
-		name = 'norminette',
-		filetypes = { 'c', 'cpp' },
-		sources = { cfile, hfile }
+		name = 'norminette-c',
+		filetypes = { 'c' },
+		sources = { cfile }
+	})
+	null_ls.register({
+		name = 'norminette-h',
+		filetypes = { 'cpp' },
+		sources = { hfile }
 	})
 end
 
