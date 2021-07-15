@@ -36,7 +36,7 @@ Norme.nvim attaches itself to Neovim's native LSP. An example setup:
 local nvim_lsp = require('lspconfig')
 
 nvim_lsp.clangd.setup({
-	on_attach = require('norme.nvim').on_attach,
+	on_attach = require('norme').on_attach,
 })
 ```
 
