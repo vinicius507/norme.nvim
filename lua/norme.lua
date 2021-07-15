@@ -1,32 +1,31 @@
-local M = {
-	parser = require('norme/parser').parser,
-	should_lint = require('norme/utils').should_lint,
-}
+local ok, null_ls = pcall(require, 'null-ls')
+local utils = require('norme.utils')
 
-local stdin_parser = '../utils/stdin-parser'
+local M = {}
 
--- HACK: Need a better idea to get contents of current buffer.
-local function script_path()
-	local str = debug.getinfo(2, "S").source:sub(2)
-	return str:match("(.*/)") or "."
+M.on_attach = function (_, _)
+	if not ok then
+		print('[Norme.nvim] new version of norme.nvim uses null-ls instead of nvim-lint. Refer to the Setup section on the README.')
+		return
+	end
+
+	if not utils.check_norminette() then
+		print('[Norme.nvim] norme.nvim requires norminette version 3.3.0 or higher.')
+		return
+	end
+
+	local cfile = require('norme.cfile')
+	local hfile = require('norme.hfile')
+
+	null_ls.setup()
+	null_ls.register({
+		name = 'norminette-c',
+		sources = { cfile, hfile }
+	})
 end
 
-M.linter =  {
-	cmd = script_path() .. stdin_parser,
-	stdin = true,
-	args = {},
-	stream = 'stdout',
-	ignore_exitcode = true,
-	parser = M.parser,
-}
-
-M.lint = function()
-	if M.should_lint() then
-		local filename = vim.fn.expand('%:t')
-		local lint = require('lint')
-		lint.linters.norme.args = { filename }
-		lint.try_lint()
-	end
+M.lint = function ()
+	print('[Norme.nvim] new version of norme.nvim uses null-ls instead of nvim-lint. Refer to the Setup section on the README.')
 end
 
 return M
