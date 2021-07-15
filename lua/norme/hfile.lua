@@ -11,7 +11,6 @@ M.generator	= require('null-ls.helpers').generator_factory({
 	args			= { '--hfile', '$TEXT' },
 	format			= 'line',
 	to_stdin		= false,
-	to_stderr		= true,
 	ignore_errors	= false,
 	on_output		= function (line, params)
 
@@ -25,6 +24,10 @@ M.generator	= require('null-ls.helpers').generator_factory({
 
 		local pattern = 'Error:%s+([%a+_?]+)%s+%(line:%s+(%d+),%s+col:%s+(%d+)%):%s+(.*)$'
 		local  code, lineno, offset, msg = string.match(line, pattern)
+
+		if code == 'HEADER_PROT_NAME' or code == 'HEADER_PROT_ALL' then
+			return nil
+		end
 
 		if code == nil or lineno == nil or offset == nil or msg == nil then
 			return nil
