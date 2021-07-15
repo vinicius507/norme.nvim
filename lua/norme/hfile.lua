@@ -11,6 +11,7 @@ M.generator	= require('null-ls.helpers').generator_factory({
 	args			= { '--hfile', '$TEXT' },
 	format			= 'line',
 	to_stdin		= false,
+	to_stderr		= true,
 	ignore_errors	= false,
 	on_output		= function (line, params)
 
