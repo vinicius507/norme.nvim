@@ -5,8 +5,9 @@ A Neovim Linter for the École 42 Norme.
 Requirements
 ---
 
-- NeoVim `v0.5+` (nightly release).
-- [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint).
+- NeoVim `v0.5+`.
+- [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+- [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - Executable `norminette` in your PATH ([version 3](https://github.com/42School/norminette) specifically).
 
 Installation
@@ -17,57 +18,37 @@ Use the package manager of your choice.
 `Packer.nvim`:
 
 ```lua
-use { 'vinicius507/norme.nvim', requires = { 'mfussenegger/nvim-lint' } }
+use { 'vinicius507/norme.nvim' }
 ```
 
-`vim-plug`
+`vim-plug`:
 
 ```vim
-Plug 'mfussenegger/nvim-lint'
 Plug 'vinicius507/norme.nvim'
 ```
 
-Configuration
+Setup
 ---
 
-In your `nvim-lint` configuration you just have to add:
+Norme.nvim attaches itself to Neovim's native LSP. An example setup:
 
 ```lua
-local lint = require('lint')
-local norme = require('norme').linter
+local nvim_lsp = require('lspconfig')
 
-lint.linters.norme = norme
-
-require('lint').linters_by_ft = {
-	c = { 'norme', },
-	cpp = { 'norme', }, -- for header and C++ files
-}
+nvim_lsp.clangd.setup({
+	on_attach = require('norme.nvim').on_attach,
+})
 ```
 
-To add it to your `init.vim`, create a lua file and add the code above. Then source it to your `init.vim` using:
+> Note: if your language server was installed using `kabouzeid/nvim-lspinstall`
+> you should change `nvim_lsp.clangd.setup` to `nvim_lsp.cpp.setup`.
 
-```vim
-luafile ~/path/to/luafile.lua
-```
-
-If you use `init.lua`, just place your plugin configuration file in the folder in `$HOME/.config/nvim/lua` and source it in your `init.lua` using:
-```lua
-require('filename') -- without the .lua extension
-```
-
-Usage
+Note
 ---
 
-Add the following `autocmd`'s:
+For now Norme.nvim will **only** run if the 42 École header is in the file.
 
-```vim
-autocmd BufEnter *.c,*.h lua require('norme').lint()
-autocmd BufWritePost *.c,*.h lua require('norme').lint()
-autocmd InsertLeave *.c,*.h lua require('norme').lint()
-autocmd TextChanged *.c,*.h lua require('norme').lint()
-```
-
-> Norme.nvim will **only** run if the 42 École header is in the file.
+Future implementations will have an option to ignore files in `.gitignore`.
 
 Author
 ---

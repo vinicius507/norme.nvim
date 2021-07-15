@@ -14,9 +14,14 @@ M.on_attach = function (_, _)
 		return
 	end
 	local cfile = require('norme.cfile')
+	local hfile = require('norme.hfile')
 
 	null_ls.setup()
-	null_ls.register({ name = 'norminette', filetypes = { 'c', 'cpp' }, sources = { cfile } })
+	null_ls.register({
+		name = 'norminette',
+		filetypes = { 'c', 'cpp' },
+		sources = { cfile, hfile }
+	})
 end
 
 return M
