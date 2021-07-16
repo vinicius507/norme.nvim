@@ -8,7 +8,7 @@ M.check_norminette = function ()
 	}):sync()
 
 	local version
-	if type(result) == 'table' and result[1]:match('norminette .*') then
+	if type(result) == 'table' and result[1] and result[1]:match('norminette .*') then
 		version = result[1]:match('norminette (.*)')
 		return (version > '3.3.0')
 	end
