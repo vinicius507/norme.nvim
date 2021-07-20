@@ -3,6 +3,9 @@ local utils = require('norme.utils')
 
 local M = {}
 
+local cfile = require('norme.cfile')
+local hfile = require('norme.hfile')
+
 M.on_attach = function (_, _)
 	if not ok then
 		print('[Norme.nvim] requirement null-ls is missing. Install it with your plugin manager.')
@@ -14,14 +17,27 @@ M.on_attach = function (_, _)
 		return
 	end
 
-	local cfile = require('norme.cfile')
-	local hfile = require('norme.hfile')
-
 	null_ls.setup()
 	null_ls.register({
 		name = 'norminette-c',
 		sources = { cfile, hfile }
 	})
+end
+
+M.setup = function ()
+	if not ok then
+		print('[Norme.nvim] requirement null-ls is missing. Install it with your plugin manager.')
+		return
+	end
+
+	null_ls.config({
+		sources = {
+			cfile,
+			hfile,
+		}
+	})
+
+	require('lspconfig')['null-ls'].setup({})
 end
 
 M.lint = function ()
