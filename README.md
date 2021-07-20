@@ -30,7 +30,9 @@ Plug 'vinicius507/norme.nvim'
 Setup
 ---
 
-Norme.nvim attaches itself to Neovim's native LSP. An example setup:
+There are two ways of using `norme-nvim`. The first one attaches itself to the C language server you're using.
+
+An example setup:
 
 ```lua
 local nvim_lsp = require('lspconfig')
@@ -42,6 +44,12 @@ nvim_lsp.clangd.setup({
 
 > Note: if your language server was installed using `kabouzeid/nvim-lspinstall`
 > you should change `nvim_lsp.clangd.setup` to `nvim_lsp.cpp.setup`.
+
+The second one, setups everything by itself(requires [#32](https://github.com/jose-elias-alvarez/null-ls.nvim/pull/32#issuecomment-883033252) in `null-ls`).
+
+```lua
+require('norme').setup()
+```
 
 Warnings
 ---
