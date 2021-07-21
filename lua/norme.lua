@@ -36,8 +36,6 @@ M.setup = function ()
 			hfile,
 		}
 	})
-
-	require('lspconfig')['null-ls'].setup({})
 end
 
 M.lint = function ()

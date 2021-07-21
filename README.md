@@ -48,7 +48,11 @@ nvim_lsp.clangd.setup({
 The second one, setups everything by itself(requires [#32](https://github.com/jose-elias-alvarez/null-ls.nvim/pull/32#issuecomment-883033252) in `null-ls`).
 
 ```lua
-require('norme').setup()
+local norme = require('norme')
+local lspconfig = require('lspconfig')
+
+norme.setup()
+lspconfig['null-ls'].setup({})
 ```
 
 Warnings
