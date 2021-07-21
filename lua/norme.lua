@@ -24,19 +24,9 @@ M.on_attach = function (_, _)
 	})
 end
 
-M.setup = function ()
-	if not ok then
-		print('[Norme.nvim] requirement null-ls is missing. Install it with your plugin manager.')
-		return
-	end
-
-	null_ls.config({
-		sources = {
-			cfile,
-			hfile,
-		}
-	})
-end
+-- Exposes norminette sources for setup with lspconfig
+M.norminette_c = cfile
+M.norminette_h = hfile
 
 M.lint = function ()
 	print('[Norme.nvim] new version of norme.nvim uses null-ls instead of nvim-lint. Refer to the Setup section on the README.')
