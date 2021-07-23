@@ -30,44 +30,16 @@ Plug 'vinicius507/norme.nvim'
 Setup
 ---
 
-There are two ways of using `norme-nvim`. The first one attaches itself to the
-C language server you're using.
-
-An example setup:
-
-```lua
-local nvim_lsp = require('lspconfig')
-
-nvim_lsp.clangd.setup({
-	on_attach = require('norme').on_attach,
-})
-```
-
-> Note: if your language server was installed using `kabouzeid/nvim-lspinstall`
-> you should change `nvim_lsp.clangd.setup` to `nvim_lsp.cpp.setup`.
-
-The second one, setups everything via `require('null-ls').config` and
-`require('lspconfig')['null-ls'].setup` (requires
-[#32](https://github.com/jose-elias-alvarez/null-ls.nvim/pull/32#issuecomment-883033252)
-in `null-ls`).
+You can setup everything via `require('null-ls').config` and
+`require('lspconfig')['null-ls'].setup`.
 
 ```lua
 local norme = require('norme')
 local null_ls = require('null-ls')
 local lspconfig = require('lspconfig')
 
-local norminette_c = norme.norminette_c
-local norminette_h = norme.norminette_h
-
-null_ls.config({
-	sources = {
-		norminette_c, -- Source for C files
-		norminette_h, -- Source for H files
-		null_ls.builtins.formatting.stylua, -- Other null-ls sources you might use
-	}
-})
-
 lspconfig['null-ls'].setup({})
+norme.setup()
 ```
 
 Warnings
