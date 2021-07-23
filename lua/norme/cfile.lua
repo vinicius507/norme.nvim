@@ -13,6 +13,7 @@ M.generator = require('null-ls.helpers').generator_factory({
 	to_stdin = false,
 	to_stderr = true,
 	ignore_errors = false,
+	timeout = 500,
 	on_output = function(line, params)
 		if
 			params.content[6] == nil
