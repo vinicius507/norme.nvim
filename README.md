@@ -76,8 +76,7 @@ Warnings
 For now Norme.nvim will **only** run if the 42 École header is in the file.
 Future implementations will have an option to ignore files in `.gitignore`.
 
-Due to how `norminette` parses hfiles, Norme.nvim is not checking header
-protections(for now). Will be fixed in a later update.
+This branch successfully checks header guards in hfiles, but it requires [#191](https://github.com/42School/norminette/pull/191).
 
 Author
 ---
