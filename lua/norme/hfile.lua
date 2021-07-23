@@ -19,7 +19,8 @@ M.generator = require('null-ls.helpers').generator_factory({
 		end
 
 		if
-			not params.content[6]:match(
+			params.content[6] == nil
+			or not params.content[6]:match(
 				'/%*%s+By:%s+.+%s+<.+>%s+%+#%+%s+%+:%+%s+%+#%+%s+%*/'
 			)
 		then
