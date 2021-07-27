@@ -8,7 +8,7 @@ Requirements
 - NeoVim `v0.5+`.
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
-- Executable `norminette` in your PATH ([version 3.3.2](https://github.com/42School/norminette) specifically).
+- Executable `norminette` in your PATH ([version 3.3.2](https://github.com/42School/norminette) or higher).
 
 Installation
 ---
