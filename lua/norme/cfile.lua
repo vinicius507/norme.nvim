@@ -8,11 +8,12 @@ M.method = null_ls.methods.DIAGNOSTICS
 
 M.generator = require('null-ls.helpers').generator_factory({
 	command = 'norminette',
-	args = { '--cfile', '$TEXT' },
+	args = { '--filename', '$FILENAME', '--cfile', '$TEXT' },
 	format = 'line',
 	to_stdin = false,
 	to_stderr = true,
 	ignore_errors = false,
+	timeout = 500,
 	on_output = function(line, params)
 		if
 			params.content[6] == nil

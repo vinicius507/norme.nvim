@@ -8,11 +8,12 @@ M.method = null_ls.methods.DIAGNOSTICS
 
 M.generator = require('null-ls.helpers').generator_factory({
 	command = 'norminette',
-	args = { '--hfile', '$TEXT' },
+	args = { '--filename', '$FILENAME', '--hfile', '$TEXT' },
 	format = 'line',
 	to_stdin = false,
 	to_stderr = true,
 	ignore_errors = false,
+	timeout = 500,
 	on_output = function(line, params)
 		if not params.bufname:match('.*%.h') then
 			return nil
@@ -30,10 +31,6 @@ M.generator = require('null-ls.helpers').generator_factory({
 		local pattern =
 			'Error:%s+([%a+_?]+)%s+%(line:%s+(%d+),%s+col:%s+(%d+)%):%s+(.*)$'
 		local code, lineno, offset, msg = string.match(line, pattern)
-
-		if code == 'HEADER_PROT_NAME' or code == 'HEADER_PROT_ALL' then
-			return nil
-		end
 
 		if code == nil or lineno == nil or offset == nil or msg == nil then
 			return nil
