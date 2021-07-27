@@ -16,7 +16,7 @@ M.check_norminette = function()
 		and result[1]:match('norminette .*')
 	then
 		version = result[1]:match('norminette (.*)')
-		return (version > '3.3.0')
+		return (version >= '3.3.2')
 	end
 	return false
 end
