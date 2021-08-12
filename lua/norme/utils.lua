@@ -8,7 +8,7 @@ M.check_norminette = function()
 	end
 
 	local config = require('norme.config').config
-	print(config.cmd)
+
 	local result = job
 		:new({
 			command = config.cmd,
