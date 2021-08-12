@@ -1,5 +1,3 @@
-local config = require('norme.config').config
-
 local M = {}
 
 M.check_norminette = function()
@@ -9,6 +7,8 @@ M.check_norminette = function()
 		error('[Norme.nvim] requirement plenary is not met.')
 	end
 
+	local config = require('norme.config').config
+	print(config.cmd)
 	local result = job
 		:new({
 			command = config.cmd,
