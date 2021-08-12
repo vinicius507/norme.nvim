@@ -3,9 +3,6 @@ local utils = require('norme.utils')
 
 local M = {}
 
-local cfile = require('norme.cfile')
-local hfile = require('norme.hfile')
-
 M.setup = function(opts)
 	local ok, null_ls = pcall(require, 'null-ls')
 
@@ -22,7 +19,10 @@ M.setup = function(opts)
 
 	opts = opts or {}
 	config.set(opts)
-	error(vim.inspect(config.config) or 'oi')
+
+	local cfile = require('norme.cfile')
+	local hfile = require('norme.hfile')
+	print(vim.inspect(cfile))
 
 	null_ls.register({
 		name = 'norminette',
