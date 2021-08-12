@@ -1,13 +1,14 @@
 local M = {}
 
 local null_ls = require('null-ls')
+local config = require('norme.config').config
 
 M.filetypes = { 'cpp' }
 
 M.method = null_ls.methods.DIAGNOSTICS
 
 M.generator = require('null-ls.helpers').generator_factory({
-	command = 'norminette',
+	command = config.cmd,
 	args = { '--filename', '$FILENAME', '--hfile', '$TEXT' },
 	format = 'line',
 	to_stdin = false,

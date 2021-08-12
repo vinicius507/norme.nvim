@@ -22,7 +22,6 @@ M.setup = function(opts)
 
 	local cfile = require('norme.cfile')
 	local hfile = require('norme.hfile')
-	print(vim.inspect(cfile))
 
 	null_ls.register({
 		name = 'norminette',
