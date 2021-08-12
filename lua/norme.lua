@@ -16,6 +16,7 @@ M.setup = function(opts)
 	opts = opts or {}
 	config.set(opts)
 
+	print(config.config.cmd)
 	if not utils.check_norminette() then
 		return
 	end
