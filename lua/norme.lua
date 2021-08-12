@@ -13,12 +13,12 @@ M.setup = function(opts)
 		return
 	end
 
+	opts = opts or {}
+	config.set(opts)
+
 	if not utils.check_norminette() then
 		return
 	end
-
-	opts = opts or {}
-	config.set(opts)
 
 	local cfile = require('norme.cfile')
 	local hfile = require('norme.hfile')

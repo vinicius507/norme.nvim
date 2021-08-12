@@ -1,3 +1,5 @@
+local config = require('norme.config').config
+
 local M = {}
 
 M.check_norminette = function()
@@ -9,7 +11,7 @@ M.check_norminette = function()
 
 	local result = job
 		:new({
-			command = 'norminette',
+			command = config.cmd,
 			args = { '--v' },
 		})
 		:sync()
