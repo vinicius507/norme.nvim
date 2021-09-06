@@ -12,6 +12,7 @@ M.generator = require('null-ls.helpers').generator_factory({
 	args = { '--filename', '$FILENAME', '--cfile', '$TEXT' },
 	format = 'line',
 	to_stdin = false,
+	from_stderr = true,
 	timeout = 500,
 	on_output = function(line, params)
 		if
