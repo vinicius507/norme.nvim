@@ -12,8 +12,7 @@ M.generator = require('null-ls.helpers').generator_factory({
 	args = { '--filename', '$FILENAME', '--hfile', '$TEXT' },
 	format = 'line',
 	to_stdin = false,
-	to_stderr = true,
-	ignore_errors = false,
+	from_stderr = true,
 	timeout = 500,
 	on_output = function(line, params)
 		if not params.bufname:match('.*%.h') then
