@@ -1,18 +1,18 @@
 local M = {}
 
 local null_ls = require('null-ls')
+local config = require('norme.config').config
 
 M.filetypes = { 'c' }
 
 M.method = null_ls.methods.DIAGNOSTICS
 
 M.generator = require('null-ls.helpers').generator_factory({
-	command = 'norminette',
+	command = config.cmd,
 	args = { '--filename', '$FILENAME', '--cfile', '$TEXT' },
 	format = 'line',
 	to_stdin = false,
-	to_stderr = true,
-	ignore_errors = false,
+	from_stderr = true,
 	timeout = 500,
 	on_output = function(line, params)
 		if

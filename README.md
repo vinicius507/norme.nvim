@@ -43,6 +43,25 @@ lspconfig['null-ls'].setup({})
 norme.setup()
 ```
 
+Configuration
+---
+
+Right now you can configure norminette command in the case it is not on your `PATH`.
+
+```lua
+norme.setup({
+	cmd = os.getenv('HOME') .. '/.local/bin/norminette'
+})
+```
+
+It comes with the following defaults:
+
+```lua
+{
+	cmd = 'norminette',
+}
+```
+
 Warnings
 ---
 
