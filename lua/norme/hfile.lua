@@ -14,20 +14,7 @@ M.generator = require('null-ls.helpers').generator_factory({
 	to_stdin = false,
 	from_stderr = true,
 	timeout = 500,
-	on_output = function(line, params)
-		if not params.bufname:match('.*%.h') then
-			return nil
-		end
-
-		if
-			params.content[6] == nil
-			or not params.content[6]:match(
-				'/%*%s+By:%s+.+%s+<.+>%s+%+#%+%s+%+:%+%s+%+#%+%s+%*/'
-			)
-		then
-			return nil
-		end
-
+	on_output = function(line, _)
 		local pattern =
 			'Error:%s+([%a+_?]+)%s+%(line:%s+(%d+),%s+col:%s+(%d+)%):%s+(.*)$'
 		local code, lineno, offset, msg = string.match(line, pattern)
@@ -50,6 +37,21 @@ M.generator = require('null-ls.helpers').generator_factory({
 			severity = 1,
 			source = 'norminette',
 		}
+	end,
+	runtime_condition = function(params)
+		if not params.bufname:match('.*%.h') then
+			return false
+		end
+
+		if
+			params.content[6] == nil
+			or not params.content[6]:match(
+				'/%*%s+By:%s+.+%s+<.+>%s+%+#%+%s+%+:%+%s+%+#%+%s+%*/'
+			)
+		then
+			return false
+		end
+		return true
 	end,
 })
 
