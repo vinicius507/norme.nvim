@@ -24,8 +24,8 @@ M.setup = function(opts)
 	local hfile = require('norme.hfile')
 
 	null_ls.register({
-		name = 'norminette',
-		sources = { cfile, hfile },
+		cfile,
+		hfile,
 	})
 end
 
