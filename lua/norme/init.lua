@@ -5,6 +5,7 @@ local DIAGNOSTICS = require('null-ls.methods').internal.DIAGNOSTICS
 
 local helpers = require('norme.helpers')
 
+-- We build the diagnostics source via null-ls itself
 norme.diagnostics = h.make_builtin({
 	method = DIAGNOSTICS,
 	filetypes = { 'c', 'cpp' },
