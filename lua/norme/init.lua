@@ -8,7 +8,7 @@ local helpers = require('norme.helpers')
 
 ---Sets up Norme.nvim, if not called, the defaults will be used
 ---@param opts table: configuration for Norme.nvim
-function h.setup(opts)
+function norme.setup(opts)
 	config.set(opts)
 end
 
