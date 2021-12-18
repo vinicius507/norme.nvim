@@ -5,10 +5,9 @@ A Neovim Linter for the École 42 Norme.
 Requirements
 ---
 
-- NeoVim `v0.5+`.
-- [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+- NeoVim v0.5+.
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
-- Executable `norminette` in your PATH ([version 3.3.2](https://github.com/42School/norminette) or higher).
+- Executable [`norminette`](https://github.com/42School/norminette)
 
 Installation
 ---
@@ -18,7 +17,7 @@ Use the package manager of your choice.
 `Packer.nvim`:
 
 ```lua
-use { 'vinicius507/norme.nvim' }
+use { 'vinicius507/norme.nvim', requires = 'jose-elias-alvarez/null-ls.nvim'}
 ```
 
 `vim-plug`:
@@ -30,36 +29,28 @@ Plug 'vinicius507/norme.nvim'
 Setup
 ---
 
-You can setup everything via `require('null-ls').config` and
-`require('lspconfig')['null-ls'].setup`.
+Norme.nvim is a null-ls source, to register it:
 
 ```lua
 local norme = require('norme')
 local null_ls = require('null-ls')
-local lspconfig = require('lspconfig')
-
-null_ls.config()
-lspconfig['null-ls'].setup({})
-norme.setup()
-```
-
-Configuration
----
-
-Right now you can configure norminette command in the case it is not on your `PATH`.
-
-```lua
-norme.setup({
-	cmd = os.getenv('HOME') .. '/.local/bin/norminette'
+null_ls.setup({
+	sources = {
+		norme.diagnostics,
+	},
 })
 ```
 
-It comes with the following defaults:
+To configure the norminette command to be called, you need to use the `with` method:
 
 ```lua
-{
-	cmd = 'norminette',
-}
+null_ls.setup({
+	sources = {
+		norme.diagnostics.with({
+			command = 'NORMINETTE_PATH',
+		}),
+	},
+})
 ```
 
 Warnings
