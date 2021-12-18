@@ -1,11 +1,9 @@
-local M = {}
-
-M.config = {
+local config = {
 	cmd = 'norminette',
 }
 
-M.set = function(cfg)
-	M.config = vim.tbl_extend('force', M.config, cfg)
+function config:set(cfg)
+	self = vim.tbl_extend('force', self, cfg)
 end
 
-return M
+return config
