@@ -18,7 +18,7 @@ return h.make_builtin({
 			[[Error:%s+([%a+_?]+)%s+%(line:%s+(%d+),%s+col:%s+(%d+)%):%s+(.*)$]],
 			{ 'code', 'row', 'col', 'message' }
 		),
+		runtime_condition = helpers.check_header,
 	},
 	factory = h.generator_factory,
-	runtime_condition = helpers.check_header,
 })
