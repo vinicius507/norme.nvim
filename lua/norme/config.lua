@@ -1,11 +1,32 @@
 local M = {}
 
-M.config = {
-	cmd = 'norminette',
+---@class NormeConfig
+local defaults = {
+	---@type string?
+	cmd = "norminette",
 }
 
-M.set = function(cfg)
-	M.config = vim.tbl_extend('force', M.config, cfg)
+---@type NormeConfig
+local settings
+
+---@param opts NormeConfig?
+function M.setup(opts)
+	settings = vim.tbl_extend("force", defaults, opts or {})
 end
+
+setmetatable(M, {
+	__index = function(_, key)
+		if key == nil then
+			return
+		end
+
+		if settings == nil then
+			M:setup()
+		end
+
+		---@cast settings NormeConfig
+		return settings[key]
+	end,
+})
 
 return M
