@@ -21,7 +21,7 @@ setmetatable(M, {
 		end
 
 		if settings == nil then
-			M:setup()
+			M.setup()
 		end
 
 		---@cast settings NormeConfig

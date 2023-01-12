@@ -2,8 +2,8 @@ local M = {}
 
 local config = require("norme.config")
 
----@param opts NormeConfig
-M.setup = function(opts)
+---@type fun(opts: NormeConfig?)
+function M.setup(opts)
 	local normels = require("norme.null-ls")
 
 	config.setup(opts)
