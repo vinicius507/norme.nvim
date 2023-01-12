@@ -5,11 +5,18 @@ local config = require("norme.config")
 
 M.source = {
 	name = "norme.nvim",
+	meta = {
+		url = "https://github.com/42School/norminette",
+		description = "École 42 norme checker",
+	},
 	method = nls.methods.DIAGNOSTICS,
 	filetypes = {
 		"c",
 		"cpp",
 	},
+	can_run = function()
+		return require("null-ls.utils").is_executable("norminette")
+	end,
 	generator = nls.generator({
 		command = config.cmd,
 		args = function(params)
