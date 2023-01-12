@@ -1,76 +1,53 @@
 # Norme.nvim
+A null-ls source for École 42 [`norminette`](https://github.com/42School/norminette)
 
-A Neovim Linter for the École 42 Norme.
-
-Requirements
----
-
-- NeoVim `v0.5+`.
-- [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+## Requirements
+- NeoVim `v0.8+`.
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
-- Executable `norminette` in your PATH ([version 3.3.2](https://github.com/42School/norminette) or higher).
+- Executable `norminette` in your `PATH`
 
-Installation
----
 
-Use the package manager of your choice.
+## Installation
 
-`Packer.nvim`:
-
-```lua
-use { 'vinicius507/norme.nvim' }
-```
-
-`vim-plug`:
-
-```vim
-Plug 'vinicius507/norme.nvim'
-```
-
-Setup
----
-
-You can setup everything via `require('null-ls').config` and
-`require('lspconfig')['null-ls'].setup`.
+<details><summary>Using lazy.nvim</summary>
+Norme.nvim LazySpec:
 
 ```lua
-local norme = require('norme')
-local null_ls = require('null-ls')
-local lspconfig = require('lspconfig')
-
-null_ls.config()
-lspconfig['null-ls'].setup({})
-norme.setup()
+local spec = {
+	"vinicius507/norme.nvim",
+	dependencies = { "jose-elias-alvarez/null-ls.nvim" }
+}
 ```
+</details>
 
-Configuration
----
+<details><summary>Using Packer</summary>
+```lua
+use({
+	"vinicius507/norme.nvim",
+	requires = { "jose-elias-alvarez/null-ls.nvim" }
+})
+```
+</details>
 
-Right now you can configure norminette command in the case it is not on your `PATH`.
+## Setup
+You can pass your configuration via the `setup` function.
+
+> **Warning**
+> Remember to setup the plugin only after setting up null-ls!
 
 ```lua
-norme.setup({
+require("null-ls").setup({ ... })
+require("norme").setup({
+	-- Your configuration
 	cmd = os.getenv('HOME') .. '/.local/bin/norminette'
 })
 ```
 
-It comes with the following defaults:
+Norme.nvim comes with the following defaults:
 
 ```lua
-{
-	cmd = 'norminette',
+---@type NormeConfig
+local defaults = {
+	cmd = "norminette",
 }
 ```
-
-Warnings
----
-
-For now Norme.nvim will **only** run if the 42 École header is in the file.
-Future implementations will have an option to ignore files in `.gitignore`.
-
-Author
----
-
-Vinícius Gonçalves de Oliveira(vgoncalv)
-
-Cadet at 42 São Paulo
