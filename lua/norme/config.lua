@@ -15,7 +15,7 @@ local function create_user_commands()
 	vim.api.nvim_create_user_command("NormeToggle", require("norme.api").toggle, {})
 end
 
----@param opts NormeConfig?
+---@type fun(opts: NormeConfig?)
 function M.setup(opts)
 	settings = vim.tbl_extend("force", defaults, opts or {})
 	create_user_commands()
