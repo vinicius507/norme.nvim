@@ -10,6 +10,7 @@ A null-ls source for École 42 [`norminette`](https://github.com/42School/normin
 ## Installation
 
 <details><summary>Using lazy.nvim</summary>
+
 Norme.nvim LazySpec:
 
 ```lua
@@ -21,6 +22,7 @@ local spec = {
 </details>
 
 <details><summary>Using Packer</summary>
+
 ```lua
 use({
 	"vinicius507/norme.nvim",
